@@ -28,7 +28,7 @@ export async function hash_text(text){
 
  /** Fonctions de test:
   * await hash_text("test")
-  * await check_hash("test", "$argon2i$v=19$m=65536,t=20,p=4$fe7zWmFLSzKN9zhRuRUhvw$bcTqkKzzN8OzXmG2neC7IpaC3yT5ezSVmhexlA")
+  * await check_hash("test", "$argon2i$v=19$m=65536,t=20,p=4$dKzpVxOiT43n6X36WbQUbQ$IcXZ6nsdscE3vCiKjfZxg6ONppPmQrS4Xhtahw")
 **/
 
 /**  Fonction de hash avec un salt identique(pour les emails) 

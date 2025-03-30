@@ -30,4 +30,3 @@ export async function decrypt_txt(text){
  * await encrypt_txt("test")
  * await decrypt_txt("067e92e223af30c0414e3b4206db66d3f61dfe19d88d50c4411264a9b8dc8d12449721688522e88402060b93190029a3e8b6f4fe6f0d59f77c0657f68c93fe2d7cc9030e455a10169c6991a4398e8d74e74a6490704515c836e5db04735e0ecd1effc120")
 **/
-
