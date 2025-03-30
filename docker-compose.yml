@@ -1,0 +1,55 @@
+version: '3.9'  
+services:
+# Création du service frontend (vuejs)
+  frontend:
+    build:
+      context: ./FREETUBE_frontend
+    container_name: freetube_frontend
+    ports:
+      - "3000:3000" 
+    depends_on:
+      - backend
+# Création du service backend (apinodejs)
+  backend:
+    build:
+      context: ./FREETUBE_backend
+    container_name: freetube_backend
+    ports:
+      - "3300:3300"
+    #credentials de connexion à la db
+    environment:
+      DB_HOST: db 
+      DB_USER: root 
+      DB_PASSWD: ''
+      DB_PORT : 3306
+    depends_on:
+      - db
+# Création du service mariadb sql
+  db:
+    image: mariadb:10.5
+    container_name: freetube_db
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'yes'
+      MARIADB_DATABASE: FreeTube
+      MARIADB_USER: root 
+      MARIADB_PASSWORD: ''
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./YoutubeClone_Data.sql:/docker-entrypoint-initdb.d/YoutubeClone_Data.sql
+# Serive phpmyadmin (visualiser la base de données)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: freetube_phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: ''
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+      
+volumes:
+  db_data:
